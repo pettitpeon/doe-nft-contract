@@ -12,7 +12,6 @@ slp_data = slp_eth_doe_contract.get_data(w3, hidden_details.user_wallet)
 mySlpSupply = balance['Staked']  + slp_data['liquidity']
 mySupplyPer = mySlpSupply / slp_data['totalSupply']
 
-
 print("")
 print(f"My supply: {mySlpSupply} SLP")
 print(f"My supply: {mySupplyPer * 100} %")

@@ -9,11 +9,13 @@ def get_data(w3, wallet):
     userRewardPerTokenPaid = contract.functions.userRewards(wallet).call()[0]
     earned = Web3.fromWei(contract.functions.earned(wallet).call(), "ether")
     rewardPerToken = contract.functions.rewardPerToken().call()
-
+    getTokensOf = contract.functions.getTokensOf(wallet).call()
+    
     return {
         "rewardRate": 102341260021419944000000000000000000, # = 102341260021419944*1e18
         "totalSupply": totalSupply,
         "userRewardPerTokenPaid": userRewardPerTokenPaid,
         "earned": earned,
         "rewardPerToken": rewardPerToken,
+        "getTokensOf": getTokensOf,
     }
