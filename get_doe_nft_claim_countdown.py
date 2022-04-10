@@ -3,7 +3,7 @@ import contracts.doe_nft_staking_contract as doe_nft_staking_contract
 import contracts.hidden_details as hidden_details
 
 uint128Max = 340282366920938463463374607431768211455 # 2**128 - 1
-w3 = Web3(Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{hidden_details.api_key}"))
+w3 = Web3(Web3.HTTPProvider(hidden_details.eth_mainnet))
 print(f"Connected to Web3: {w3.isConnected()}")
 
 data = doe_nft_staking_contract.get_data(w3, hidden_details.user_wallet)
