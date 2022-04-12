@@ -63,6 +63,7 @@ print(f"SLP:             {arbitrum['SLP_DOE']: 10.2f} DOE")
 print(f"SLP:DOE Rewards: {arbitrum['SLP_rewards']: 10.2f} DOE")
 print(f"Arbitrum Total:  {arb_doe_total: 10.2f} DOE")
 print(f"DOE:NFT Rewards: {doe_nft_total: 10.2f} DOE")
+print(f"Days left:    {doe_nft['daysLeft']:.2f} days")
 print(f"NFT staked:   {doe_nft['StakedNFTs']}: {len(doe_nft['StakedNFTs'])}")
 print(f"NFT unstaked: {nft['walletInventory']}: {len(nft['walletInventory'])}")
 
