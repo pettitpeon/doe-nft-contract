@@ -4,7 +4,8 @@ import contracts.slp_eth_doe_contract as slp_eth_doe_contract
 import contracts.doe_doe_staking_contract as doe_doe_staking_contract
 import contracts.doe_nft_staking_contract as doe_nft_staking_contract
 import contracts.nft_contract as nft_contract
-import contracts.hidden_details as hidden_details
+import hidden_details as hidden_details
+import lib.nft_data as nft_data
 
 def get_arbitrum_worth(w3, wallet):
     balance = slp_doe_staking_contract.get_balances(w3, wallet)
@@ -63,7 +64,7 @@ print(f"SLP:             {arbitrum['SLP_DOE']: 10.2f} DOE")
 print(f"SLP:DOE Rewards: {arbitrum['SLP_rewards']: 10.2f} DOE")
 print(f"Arbitrum Total:  {arb_doe_total: 10.2f} DOE")
 print(f"DOE:NFT Rewards: {doe_nft_total: 10.2f} DOE")
-print(f"Days left:    {doe_nft['daysLeft']:.2f} days")
+print(f"Days left to claim: {doe_nft['daysLeft']:.2f} days")
 print(f"NFT staked:   {doe_nft['StakedNFTs']}: {len(doe_nft['StakedNFTs'])}")
 print(f"NFT unstaked: {nft['walletInventory']}: {len(nft['walletInventory'])}")
 
@@ -71,3 +72,13 @@ grand_total = arb_doe_total + doe_doe_total + doe_nft_total
 print("=====================================================================")
 print(f"NFTs total: {nfts_total}: {len(nfts_total)}")
 print('Grand total: {:,.2f} DOE'.format(grand_total))
+
+cummulated = 0.0
+for nft in nfts_total:
+    last_sale = nft_data.get_last_sale_price(nft)
+    usd_price = last_sale['USD_now']
+    cummulated = cummulated + usd_price
+    print(f"Last sale #{nft}: {usd_price: 10,.2f} usd")
+
+
+print(f"Last sale cummulated: {cummulated:,.2f} usd")

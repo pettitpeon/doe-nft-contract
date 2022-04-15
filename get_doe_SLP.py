@@ -1,7 +1,7 @@
 from web3 import Web3
 import contracts.slp_doe_staking_contract as slp_doe_staking_contract
 import contracts.slp_eth_doe_contract as slp_eth_doe_contract
-import contracts.hidden_details as hidden_details
+import hidden_details as hidden_details
 
 w3 = Web3(Web3.HTTPProvider(hidden_details.arbirum_mainnet))
 print(f"Connected to Web3: {w3.isConnected()}")
