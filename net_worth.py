@@ -51,7 +51,7 @@ def get_cummulated_price(nfts_total, eth_doe_price, stats):
     cummulated = 0.0
     for nft in nfts_total:
         type = nft_data.get_nft_type(nft)
-        estimated = nft_data.get_estimeated_price(nft, stats)['estimated']
+        estimated = nft_data.get_estimated_price(nft, stats)['estimated']
         cummulated = cummulated + estimated
         print(f"Estimated #{nft} {type: >9}: {estimated: 7,.4f} ETH, {estimated/eth_doe_price: 10,.2f} DOE")
 
@@ -62,9 +62,11 @@ def get_eth_doe_price():
     url = "https://api.coingecko.com/api/v3/simple/price?ids=dogsofelon&vs_currencies=eth"
     return requests.get(url, headers=headers).json()['dogsofelon']['eth']
 
+#############################################################
+wallet = hidden_details.user_wallet
+#############################################################
 
 eth_doe_price = get_eth_doe_price()
-wallet = hidden_details.user_wallet
 w3_arb = Web3(Web3.HTTPProvider(hidden_details.arbirum_mainnet))
 w3_eth = Web3(Web3.HTTPProvider(hidden_details.eth_mainnet))
 
