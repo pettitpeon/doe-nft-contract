@@ -110,12 +110,14 @@ def get_estimated_price(id, stats):
     type = get_nft_type(id)
     averaged_floor = (stats['thirty_day_average_price'] + stats['floor_price']) / 2
     last_sale = get_last_sale_price(id)['ETH_now']
-    rarity_bonus = get_rarity_bonus(get_rarity(id))
+    rarity = get_rarity(id)
+    rarity_bonus = get_rarity_bonus(rarity)
     type_floor = get_type_floor(averaged_floor, type)
 
     return {
         'averaged_floor': averaged_floor,
         'last_sale': last_sale,
+        'rarity': rarity,
         'rarity_bonus': rarity_bonus,
         'estimated': max(type_floor, averaged_floor * rarity_bonus, last_sale),
         'type': type

@@ -51,9 +51,11 @@ def get_cummulated_price(nfts_total, eth_doe_price, stats):
     cummulated = 0.0
     for nft in nfts_total:
         type = nft_data.get_nft_type(nft)
-        estimated = nft_data.get_estimated_price(nft, stats)['estimated']
+        estimated_stats = nft_data.get_estimated_price(nft, stats)
+        estimated = estimated_stats['estimated']
+        rarity = estimated_stats['rarity']
         cummulated = cummulated + estimated
-        print(f"Estimated #{nft} {type: >9}: {estimated: 7,.4f} ETH, {estimated/eth_doe_price: 10,.2f} DOE")
+        print(f"Estimated #{nft}[{rarity: >4}] {type: >9}: {estimated: 7,.4f} ETH, {estimated/eth_doe_price: 10,.2f} DOE")
 
     return cummulated
 
